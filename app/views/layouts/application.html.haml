@@ -9,4 +9,8 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic' rel='stylesheet' type='text/css'>
   %body
     = render 'layouts/header'
+    %p.notice
+      = notice
+    %p.alert
+      = alert
     = yield

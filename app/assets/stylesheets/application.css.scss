@@ -302,14 +302,18 @@ header.navigation {
     }
   }
 
-  .sign-up {
+  li.sign-up {
     @include button(flat, $action-color);
-    display: inline;
-    float: right;
     font-size: 0.8em;
-    margin-top: 1em;
-    padding: 0.75em 1em;
+    margin-top: 10px;
+    margin-right:10px;
     text-transform: uppercase;
+    .sign-up {
+      @include button(flat, $action-color);
+      float: right;
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
   }
 
   // Search bar
@@ -321,7 +325,7 @@ header.navigation {
 
     float: left;
     padding: 0.85em 0.6em 0.7em 0.6em;
-    width: 60%;
+    width: 50%;
 
     form {
       position: relative;

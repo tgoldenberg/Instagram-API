@@ -6,7 +6,7 @@
     %nav{role: 'navigation'}
       %ul.navigation-menu.show{id:'js-navigation-menu'}
         %li.nav-link
-          %a{href: '#'} Products
+          = link_to 'Home', root_path
         %li.nav-link
           %a{href: '#'} About Us
         %li.nav-link
@@ -38,6 +38,15 @@
           %input{type: 'search', placeholder: 'Enter search'}
           %button{type: 'submit'}
             %img{src: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png'}
-      %a{href:'#', class: 'sign-up'} Sign up
+      - if user_signed_in?
+        %li.sign-up
+          = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'sign-up'
+        %li.sign-up
+          = link_to 'Account', edit_user_registration_path, class: 'sign-up'
+      - else
+        %li.sign-up
+          = link_to 'Sign up', new_user_registration_path, class: 'sign-up'
+        %li.sign-up
+          = link_to 'Sign in', new_user_session_path, class: 'sign-up'
 
 %script
