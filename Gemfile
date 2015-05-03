@@ -15,6 +15,7 @@ gem "haml-rails", "~> 0.9"
 gem 'bourbon'
 gem 'neat'
 gem 'devise'
+gem 'instagram'
 
 
 
