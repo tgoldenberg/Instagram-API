@@ -3,3 +3,17 @@
   .line-holder
     .line-bottom
       %h1.page-title Instagram Locator
+
+%ul.accordion-tabs
+  %li.tab-header-and-content
+    %a{href:"#", class: 'is-active tab-link'} My Instagram Photo Locator
+    .tab-content
+      %input{type: 'text area', placeholder: 'my instagram username'}
+      %button{type: 'submit'} My photos
+      .pics
+
+  %li.tab-header-and-content
+    %a{href:"#", class: 'tab-link'} Instagram Photos by Location
+    .tab-content
+      %input{type: 'text area', placeholder: 'location'}
+      %button{type: 'submit'} Get photos

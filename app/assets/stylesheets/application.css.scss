@@ -16,6 +16,26 @@
  *= require_tree .
  *= require_self
  */
+$base-border-color: gainsboro !default;
+$base-border-radius: 3px !default;
+$action-color: #477DCA !default;
+$dark-gray: #333 !default;
+$large-screen: em(860) !default;
+$navigation-padding: 1em;
+$navigation-background: $dark-gray;
+$navigation-color: transparentize(white, 0.3);
+$navigation-color-hover: white;
+$navigation-height: 60px;
+$navigation-nav-button-background: $action-color;
+$navigation-nav-button-background-hover: lighten($navigation-background, 10%);
+$navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20%);
+$navigation-search-background: lighten($navigation-background, 5);
+$navigation-search-border: 1px solid darken($navigation-background, 5);
+$navigation-active-link-color: transparentize(white, 0.5);
+$navigation-submenu-padding: 1em;
+$navigation-submenu-width: 12em;
+$horizontal-bar-mode: $large-screen;
+
 h1, h2, h3, h4, h5, h6, p, li {
   font-family: 'Lato', sans-serif;
   font-weight: 300px;
@@ -28,25 +48,6 @@ li {
   list-style-type: none;
 }
 header.navigation {
-  $base-border-color: gainsboro !default;
-  $base-border-radius: 3px !default;
-  $action-color: #477DCA !default;
-  $dark-gray: #333 !default;
-  $large-screen: em(860) !default;
-  $navigation-padding: 1em;
-  $navigation-background: $dark-gray;
-  $navigation-color: transparentize(white, 0.3);
-  $navigation-color-hover: white;
-  $navigation-height: 60px;
-  $navigation-nav-button-background: $action-color;
-  $navigation-nav-button-background-hover: lighten($navigation-background, 10%);
-  $navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20%);
-  $navigation-search-background: lighten($navigation-background, 5);
-  $navigation-search-border: 1px solid darken($navigation-background, 5);
-  $navigation-active-link-color: transparentize(white, 0.5);
-  $navigation-submenu-padding: 1em;
-  $navigation-submenu-width: 12em;
-  $horizontal-bar-mode: $large-screen;
 
   background-color: $navigation-background;
   border-bottom: 1px solid darken($navigation-background, 10);
@@ -377,6 +378,29 @@ header.navigation {
     }
   }
 }
+
+button {
+  @include button(flat, $action-color);
+  margin-top: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  width: 125px;
+  margin-bottom: 20px;
+
+  @include media($large-screen) {
+    margin-top: 1.55em;
+  }
+}
+.tab-content {
+  input {
+    height: 35px;
+    width: 200px;
+    font-size: 15px;
+    box-shadow:none;
+    border-radius: 4px;
+    padding: 5px;
+  }
+}
 .container {
   padding: 15px;
 }
@@ -394,6 +418,111 @@ header.navigation {
       z-index: 20;
       text-align: center;
       margin-bottom: -10px;
+    }
+  }
+}
+
+// css for tab headers
+
+.accordion-tabs {
+  $base-border-color: gainsboro !default;
+  $base-border-radius: 3px !default;
+  $base-background-color: white !default;
+  $base-spacing: 1.5em !default;
+  $action-color: #477DCA !default;
+  $base-link-color: $action-color !default;
+  $dark-gray: #333 !default;
+  $light-gray: #DDD !default;
+  $medium-screen: em(640) !default;
+  $tab-border: 1px solid $base-border-color;
+  $tab-content-background: lighten($light-gray, 10);
+  $tab-active-background: $tab-content-background;
+  $tab-inactive-color: $base-background-color;
+  $tab-inactive-hover-color: darken($light-gray, 5);
+  $tab-mode: $medium-screen;
+
+  @include clearfix;
+  line-height: 1.5;
+  margin-bottom: $base-spacing;
+  padding: 0;
+
+  @include media(max-width $tab-mode) {
+    border-radius: $base-border-radius;
+    border: $tab-border;
+  }
+
+  .tab-header-and-content {
+    list-style: none;
+
+    @include media($tab-mode) {
+      display: inline;
+    }
+
+    &:first-child .tab-link {
+      border-top-left-radius: $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+
+      @include media(max-width $tab-mode) {
+        border-top: 0;
+      }
+    }
+
+    &:last-child .tab-link {
+      @include media(max-width $tab-mode) {
+        border-bottom-left-radius: $base-border-radius;
+        border-bottom-right-radius: $base-border-radius;
+      }
+    }
+  }
+
+  .tab-link {
+    background-color: $tab-inactive-color;
+    border-top: $tab-border;
+    color: $dark-gray;
+    display: block;
+    font-weight: bold;
+    padding: $base-spacing/2 $gutter/2;
+    text-decoration: none;
+
+    @include media($tab-mode) {
+      @include inline-block;
+      border-top-left-radius: $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+      border-top: 0;
+    }
+
+    &:hover {
+      color: $base-link-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.is-active {
+      background-color: $tab-active-background;
+
+      @include media($tab-mode) {
+        background-color: $tab-active-background;
+        border: $tab-border;
+        border-bottom-color: $tab-active-background;
+        margin-bottom: -1px;
+      }
+    }
+  }
+
+  .tab-content {
+    background: $tab-content-background;
+    display: none;
+    padding: $base-spacing $gutter;
+    width: 100%;
+
+    @include media($tab-mode) {
+      border-bottom-left-radius: $base-border-radius;
+      border-bottom-right-radius: $base-border-radius;
+      border-top-right-radius: $base-border-radius;
+      border: $tab-border;
+      float: left;
     }
   }
 }
