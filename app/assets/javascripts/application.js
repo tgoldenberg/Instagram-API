@@ -44,11 +44,12 @@ $(document).ready(function() {
         console.log(latitude);
         url = "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude;
         console.log(url);
+        var ts = Math.round((new Date()).getTime() / 1000);
         $.ajax({
           type: 'GET',
           dataType: 'jsonp',
           cache: false,
-          url: "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude + "&distance=10000?client_id=8fd88729ccb74495ae9aaad32606fe7d&access_token=2053654095.8fd8872.8110806e6b3f4bedbd2e58ec28ed2f9a",
+          url: "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude + "&distance=10000?&count=200&min_timestamp=0&max_timestamp="+ts+"client_id=8fd88729ccb74495ae9aaad32606fe7d&access_token=2053654095.8fd8872.8110806e6b3f4bedbd2e58ec28ed2f9a",
           success: function(data) {
             console.log(data);
             $('.location-pics').html('');
