@@ -377,3 +377,23 @@ header.navigation {
     }
   }
 }
+.container {
+  padding: 15px;
+}
+.line-holder {
+  border-bottom: 1px solid #b4b4b4;
+  text-align: center;
+
+  .line-bottom {
+    width: 31%;
+    margin: 0 auto;
+
+
+    .page-title {
+      background: white;
+      z-index: 20;
+      text-align: center;
+      margin-bottom: -10px;
+    }
+  }
+}
