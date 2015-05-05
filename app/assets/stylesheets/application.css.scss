@@ -379,18 +379,7 @@ header.navigation {
   }
 }
 
-button {
-  @include button(flat, $action-color);
-  margin-top: 1em;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
-  width: 125px;
-  margin-bottom: 20px;
 
-  @include media($large-screen) {
-    margin-top: 1.55em;
-  }
-}
 .tab-content {
   input {
     height: 35px;
@@ -399,6 +388,18 @@ button {
     box-shadow:none;
     border-radius: 4px;
     padding: 5px;
+  }
+  button {
+    @include button(flat, $action-color);
+    margin-top: 1em;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+    width: 125px;
+    margin-bottom: 20px;
+
+    @include media($large-screen) {
+      margin-top: 1.55em;
+    }
   }
 }
 .container {

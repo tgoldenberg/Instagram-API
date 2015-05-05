@@ -16,6 +16,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'devise'
 gem 'instagram'
+gem 'gmaps4rails'
 # gem 'geocoder'
 
 

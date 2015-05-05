@@ -30,6 +30,8 @@ $(document).ready(function() {
     }
   });
 
+
+
   $('#location-photos').click(function() {
     var geocoder = new google.maps.Geocoder();
     var location = $('#location-field').val();
@@ -49,7 +51,7 @@ $(document).ready(function() {
           type: 'GET',
           dataType: 'jsonp',
           cache: false,
-          url: "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude + "&distance=10000?&count=200&min_timestamp=0&max_timestamp="+ts+"client_id=8fd88729ccb74495ae9aaad32606fe7d&access_token=2053654095.8fd8872.8110806e6b3f4bedbd2e58ec28ed2f9a",
+          url: "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude + "&distance=1000?&count=200&min_timestamp=0&max_timestamp="+ts+"client_id=8fd88729ccb74495ae9aaad32606fe7d&access_token=2053654095.8fd8872.8110806e6b3f4bedbd2e58ec28ed2f9a",
           success: function(data) {
             console.log(data);
             $('.location-pics').html('');
@@ -61,8 +63,6 @@ $(document).ready(function() {
         });
       }
     });
-
-
   });
 
 
@@ -93,6 +93,37 @@ $(document).ready(function() {
       $(this).addClass('is-active');
     } else {
       event.preventDefault();
+    }
+  });
+
+  var geocoder = new google.maps.Geocoder();
+  var location =  $('body').data('id');
+  console.log(location);
+  var url ="";
+
+  geocoder.geocode( { 'address': location}, function(results, status) {
+
+  if (status == google.maps.GeocoderStatus.OK) {
+      var latitude = results[0].geometry.location.lat();
+      var longitude = results[0].geometry.location.lng();
+      console.log(latitude);
+      url = "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude;
+      console.log(url);
+      var ts = Math.round((new Date()).getTime() / 1000);
+      $.ajax({
+        type: 'GET',
+        dataType: 'jsonp',
+        cache: false,
+        url: "https://api.instagram.com/v1/media/search?lat=" + latitude + "&lng=" + longitude + "&distance=1000?&count=200&min_timestamp=0&max_timestamp="+ts+"client_id=8fd88729ccb74495ae9aaad32606fe7d&access_token=2053654095.8fd8872.8110806e6b3f4bedbd2e58ec28ed2f9a",
+        success: function(data) {
+          console.log(data);
+          $('.location-pics').html('');
+          for(var i = 0; i < 100; i++) {
+            $('.location-pics').append("<a target='_blank' href='" + data.data[i].link +
+            "'><img src='" + data.data[i].images.low_resolution.url + "'></img></a>");
+          }
+        }
+      });
     }
   });
 });

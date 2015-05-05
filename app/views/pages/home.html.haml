@@ -6,14 +6,20 @@
 
 %ul.accordion-tabs
   %li.tab-header-and-content
-    %a{href:"#", class: 'is-active tab-link'} My Instagram Photo Locator
+    %a{href:"#", class: 'is-active tab-link'} My Instagram Photos
     .tab-content
       %input{type: 'text area', placeholder: 'my instagram username'}
       %button{type: 'submit'} My photos
       .pics
 
   %li.tab-header-and-content
-    %a{href:"#", class: 'tab-link'} Instagram Photos by Location
+    %a{href:"#", class: 'tab-link'} Recent Instagram Photos in my City
+    .tab-content
+      %input{type: 'text area', placeholder: 'location', id: 'location-field'}
+      %button{type: 'submit', id: 'location-photos'} Get photos
+      .location-pics
+  %li.tab-header-and-content
+    %a{href:"#", class: 'tab-link'} Map of My Instagram Photos
     .tab-content
       %input{type: 'text area', placeholder: 'location', id: 'location-field'}
       %button{type: 'submit', id: 'location-photos'} Get photos

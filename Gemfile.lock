@@ -70,6 +70,7 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -192,6 +193,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  gmaps4rails
   haml-rails (~> 0.9)
   instagram
   jbuilder (~> 2.0)
